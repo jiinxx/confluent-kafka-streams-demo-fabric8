@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com</groupId>
+        <artifactId>container</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>zookeeper</artifactId>
+    <name>zookeeper</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>zookeeper</name>
+                            <alias>zookeeper</alias>
+                            <build>
+                                <from>confluentinc/cp-zookeeper:3.2.1</from>
+                                <tags>
+                                    <tag>latest</tag>
+                                </tags>
+                                <ports>
+                                    <port>2181</port>
+                                </ports>
+                            </build>
+                            <run>
+                                <namingStrategy>alias</namingStrategy>
+                                <hostname>zookeeper</hostname>
+                                <env>
+                                    <ZOOKEEPER_CLIENT_PORT>2181</ZOOKEEPER_CLIENT_PORT>
+                                    <ZOOKEEPER_TICK_TIME>2000</ZOOKEEPER_TICK_TIME>
+                                </env>
+                                <ports>
+                                    <port>2181:2181</port>
+                                </ports>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>

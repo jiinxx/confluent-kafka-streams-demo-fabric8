@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com</groupId>
+        <artifactId>container</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>kafka</artifactId>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>kafka</name>
+                            <alias>kafka</alias>
+                            <build>
+                                <from>confluentinc/cp-kafka:latest</from>
+                                <tags>
+                                    <tag>latest</tag>
+                                </tags>
+                                <ports>
+                                    <port>9092</port>
+                                </ports>
+                            </build>
+                            <run>
+                                <namingStrategy>alias</namingStrategy>
+                                <hostname>kafka</hostname>
+                                <env>
+                                    <KAFKA_BROKER_ID>1</KAFKA_BROKER_ID>
+                                    <KAFKA_ZOOKEEPER_CONNECT>zookeeper:2181</KAFKA_ZOOKEEPER_CONNECT>
+                                    <KAFKA_ADVERTISED_LISTENERS>PLAINTEXT://kafka:9092</KAFKA_ADVERTISED_LISTENERS>
+                                    <KAFKA_DEFAULT_REPLICATION_FACTOR>1</KAFKA_DEFAULT_REPLICATION_FACTOR>
+                                </env>
+                                <ports>
+                                    <port>9092:9092</port>
+                                </ports>
+                                <links>
+                                    <link>zookeeper</link>
+                                </links>
+                                <dependsOn>
+                                    <container>zookeeper</container>
+                                </dependsOn>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
