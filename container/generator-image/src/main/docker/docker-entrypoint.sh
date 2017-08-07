@@ -20,10 +20,11 @@ function check_env_variables () {
 
 }
 
+cub sr-ready schema-registry 8081 30
 if [ "$1" = 'generator' ]; then
   # check_env_variables
   java -jar /opt/generator/generator.jar kafka:9092 http://schema-registry:8081
-
+#  tail -f /dev/null
 else
     exec "$@"
 fi
