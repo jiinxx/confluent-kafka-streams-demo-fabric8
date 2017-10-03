@@ -39,6 +39,9 @@
                                     <KAFKA_ZOOKEEPER_CONNECT>zookeeper:2181</KAFKA_ZOOKEEPER_CONNECT>
                                     <KAFKA_ADVERTISED_LISTENERS>PLAINTEXT://kafka:9092</KAFKA_ADVERTISED_LISTENERS>
                                     <KAFKA_DEFAULT_REPLICATION_FACTOR>1</KAFKA_DEFAULT_REPLICATION_FACTOR>
+                                    <KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR>1</KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR>
+                                    <KAFKA_CONFIG_TOPIC_REPLICATION_FACTOR>1</KAFKA_CONFIG_TOPIC_REPLICATION_FACTOR>
+                                    <KAFKA_STATUS_TOPIC_REPLICATION_FACTOR>1</KAFKA_STATUS_TOPIC_REPLICATION_FACTOR>
                                 </env>
                                 <ports>
                                     <port>9092:9092</port>
